@@ -1,0 +1,2 @@
+.HasColumnType("varchar(150)");
+Или лучше .HasColumnType("text");
