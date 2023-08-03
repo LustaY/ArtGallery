@@ -13,11 +13,15 @@ namespace ArtGallery.Infrastructure.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(150)");
 
+            builder.Property(x => x.Description)
+                .IsRequired()
+                .HasColumnType("varchar(150)");
+
             builder.HasMany(x => x.Items)
                 .WithOne(x => x.Category)
                 .HasForeignKey(x => x.CategoryId);
 
-            builder.ToTable("Categories");
+            builder.ToTable("Category");
 
         }
     }

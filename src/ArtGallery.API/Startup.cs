@@ -1,4 +1,6 @@
-﻿using ArtGallery.Infrastructure.Context;
+﻿using AutoMapper;
+using ArtGallery.API.Configuration;
+using ArtGallery.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -20,6 +22,17 @@ namespace ArtGallery.API
             });
 
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
+            services.ResolveDependencies();
+
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "ArtGallery API",
+                    Version = "v1"
+                });
+            });
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

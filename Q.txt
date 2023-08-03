@@ -1,2 +1,19 @@
 .HasColumnType("varchar(150)");
 Или лучше .HasColumnType("text");
++.HasMaxLength();
+
++Какие поля обязательны а какие нет?
+
+
+
+
+
+
++builder.ToTable("Categories"); Category
+
+Model->Entity
+update date
+create date
+
+ioc\di container
+trello

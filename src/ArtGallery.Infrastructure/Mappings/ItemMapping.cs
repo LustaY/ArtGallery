@@ -13,7 +13,7 @@ namespace ArtGallery.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.ToTable("Items");
+            builder.ToTable("Item");
 
             builder.HasKey(x => x.Id);
 
@@ -26,14 +26,13 @@ namespace ArtGallery.Infrastructure.Mappings
                 .HasColumnType("varchar(150)");
 
             builder.Property(x => x.Author)
-                .IsRequired()
                 .HasColumnType("varchar(150)");
 
-            builder.Property(x => x.Price)
-                .IsRequired();
+            builder.Property(x => x.Price);
 
-            builder.Property(x => x.Location)
-                .IsRequired();
+
+            builder.Property(x => x.Location);
+                
 
             builder.Property(x => x.CategoryId)
                 .IsRequired();

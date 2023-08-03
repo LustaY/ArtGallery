@@ -11,7 +11,7 @@ namespace ArtGallery.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categories",
+                name: "Category",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -21,35 +21,35 @@ namespace ArtGallery.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Items",
+                name: "Item",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(150)", nullable: false),
                     Description = table.Column<string>(type: "varchar(150)", nullable: false),
-                    Author = table.Column<string>(type: "varchar(150)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Location = table.Column<double>(type: "float", nullable: false),
+                    Author = table.Column<string>(type: "varchar(150)", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: true),
+                    Location = table.Column<double>(type: "float", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Items", x => x.Id);
+                    table.PrimaryKey("PK_Item", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Items_Categories_CategoryId",
+                        name: "FK_Item_Category_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        principalTable: "Category",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_CategoryId",
-                table: "Items",
+                name: "IX_Item_CategoryId",
+                table: "Item",
                 column: "CategoryId");
         }
 
@@ -57,10 +57,10 @@ namespace ArtGallery.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "Item");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Category");
         }
     }
 }
