@@ -33,6 +33,7 @@ namespace ArtGallery.API
                     Version = "v1"
                 });
             });
+            services.AddCors();
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

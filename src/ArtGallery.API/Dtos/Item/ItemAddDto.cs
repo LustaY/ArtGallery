@@ -4,7 +4,7 @@ namespace ArtGallery.API.Dtos.Item
 {
     public class ItemAddDto
     {
-        [Required(ErrorMessage ="Thr field {0} is required")]
+        [Required(ErrorMessage ="The field {0} is required")]
         public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "The field{0} is required")]

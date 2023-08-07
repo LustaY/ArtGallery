@@ -33,7 +33,7 @@ namespace ArtGallery.API.Controllers
         {
             var category = await _categoryService.GetById(id);
             if (category == null) return NotFound();
-            return Ok(_mapper.Map<IEnumerable<CategoryResultDto>>(category));
+            return Ok(_mapper.Map<CategoryResultDto>(category));
         }
 
         [HttpPost]
@@ -72,9 +72,10 @@ namespace ArtGallery.API.Controllers
         }
 
         [HttpGet]
+        [Route("search/{category}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult<List<Category>>> Search(string category)
+        public async Task<ActionResult<List<Category>>> Search(string category)
         {
             var categories = _mapper.Map<List<Category>>(await _categoryService.Search(category));
             if ( categories == null || categories.Count == 0)
