@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ArtGallery.Infrastructure.Context
 {
@@ -27,6 +28,14 @@ namespace ArtGallery.Infrastructure.Context
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys()))
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
+
+            modelBuilder.Entity<Item>()
+            .Property(e => e.UpdateDate)
+            .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Category>()
+            .Property(e => e.UpdateDate)
+            .HasDefaultValueSql("GETDATE()");
 
             base.OnModelCreating(modelBuilder);
         }

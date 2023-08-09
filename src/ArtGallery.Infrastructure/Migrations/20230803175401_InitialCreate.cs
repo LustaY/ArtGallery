@@ -17,12 +17,14 @@ namespace ArtGallery.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(150)", nullable: false),
-                    Description = table.Column<string>(type: "varchar(150)", nullable: false)
+                    Description = table.Column<string>(type: "varchar(150)", nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
-                });
+                });;
 
             migrationBuilder.CreateTable(
                 name: "Item",
@@ -35,7 +37,9 @@ namespace ArtGallery.Infrastructure.Migrations
                     Author = table.Column<string>(type: "varchar(150)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: true),
                     Location = table.Column<double>(type: "float", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
                 },
                 constraints: table =>
                 {

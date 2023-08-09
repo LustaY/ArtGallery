@@ -11,9 +11,9 @@
 
 +builder.ToTable("Categories"); Category
 
-Model->Entity
-update date
-create date
++Model->Entity
++update date
++create date
 
 ioc\di container
 trello

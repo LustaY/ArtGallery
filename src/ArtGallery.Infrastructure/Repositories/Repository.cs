@@ -2,10 +2,12 @@
 using ArtGallery.Domain.Models;
 using ArtGallery.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,6 +46,7 @@ namespace ArtGallery.Infrastructure.Repositories
 
         public virtual async Task Update(TEntity entity)
         {
+            //entity.UpdateDate = DateTime.Now;
             DbSet.Update(entity);
             await SaveChanges();
         }
@@ -56,6 +59,13 @@ namespace ArtGallery.Infrastructure.Repositories
 
         public async Task<int> SaveChanges()
         {
+            var modifiedEntities = Db.ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Modified);
+
+            foreach (var entity in modifiedEntities)
+            {
+                entity.Property("UpdateDate").CurrentValue = DateTime.UtcNow;
+            }
             return await Db.SaveChangesAsync();
         }
 
