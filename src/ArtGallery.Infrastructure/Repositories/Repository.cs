@@ -46,7 +46,6 @@ namespace ArtGallery.Infrastructure.Repositories
 
         public virtual async Task Update(TEntity entity)
         {
-            //entity.UpdateDate = DateTime.Now;
             DbSet.Update(entity);
             await SaveChanges();
         }

@@ -4,11 +4,6 @@
 
 +Какие поля обязательны а какие нет?
 
-
-
-
-
-
 +builder.ToTable("Categories"); Category
 
 +Model->Entity
