@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ArtGallery.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +25,7 @@ namespace ArtGallery.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
-                });;
+                });
 
             migrationBuilder.CreateTable(
                 name: "Item",
@@ -51,15 +52,74 @@ namespace ArtGallery.Infrastructure.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    Author = table.Column<string>(type: "varchar(150)", nullable: false),
+                    CommentValue = table.Column<string>(type: "varchar(150)", nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comment_Item_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Item",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rating",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RatingValue = table.Column<int>(type: "int", nullable: true),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rating", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rating_Item_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Item",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comment_ItemId",
+                table: "Comment",
+                column: "ItemId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Item_CategoryId",
                 table: "Item",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rating_ItemId",
+                table: "Rating",
+                column: "ItemId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Comment");
+
+            migrationBuilder.DropTable(
+                name: "Rating");
+
             migrationBuilder.DropTable(
                 name: "Item");
 

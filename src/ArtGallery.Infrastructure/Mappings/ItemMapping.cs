@@ -32,7 +32,14 @@ namespace ArtGallery.Infrastructure.Mappings
 
 
             builder.Property(x => x.Location);
-                
+
+            builder.HasMany(x => x.Comments)
+                .WithOne(x => x.Item)
+                .HasForeignKey(x => x.ItemId);
+
+            builder.HasMany(x => x.Ratings)
+                .WithOne(x => x.Item)
+                .HasForeignKey(x => x.ItemId);
 
             builder.Property(x => x.CategoryId)
                 .IsRequired();

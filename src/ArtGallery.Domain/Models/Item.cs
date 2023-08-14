@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace ArtGallery.Domain.Models
         public double? Location { get; set; }
         public int CategoryId { get; set; }
 
+        public IEnumerable<Rating> Ratings { get; set; }
+        public IEnumerable<Comment> Comments { get; set; }
         public Category Category { get; set; }
     }
 }

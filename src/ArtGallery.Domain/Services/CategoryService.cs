@@ -19,7 +19,10 @@ namespace ArtGallery.Domain.Services
             _itemService = itemService;
         }
 
-        public async Task<IEnumerable<Category>> GetAll() { return await _categoryRepository.GetAll(); }
+        public async Task<IEnumerable<Category>> GetAll() 
+        { 
+            return await _categoryRepository.GetAll(); 
+        }
 
         public async Task<Category> GetById(int id)
         {

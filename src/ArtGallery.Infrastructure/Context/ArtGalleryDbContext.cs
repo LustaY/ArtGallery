@@ -15,6 +15,8 @@ namespace ArtGallery.Infrastructure.Context
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +36,14 @@ namespace ArtGallery.Infrastructure.Context
             .HasDefaultValueSql("GETDATE()");
 
             modelBuilder.Entity<Category>()
+            .Property(e => e.UpdateDate)
+            .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Rating>()
+            .Property(e => e.UpdateDate)
+            .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Comment>()
             .Property(e => e.UpdateDate)
             .HasDefaultValueSql("GETDATE()");
 
