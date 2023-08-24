@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArtGallery.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace ArtGallery.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(150)", nullable: false),
                     Description = table.Column<string>(type: "varchar(150)", nullable: false),
-                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
-                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
                 },
                 constraints: table =>
                 {
@@ -39,8 +39,10 @@ namespace ArtGallery.Infrastructure.Migrations
                     Price = table.Column<double>(type: "float", nullable: true),
                     Location = table.Column<double>(type: "float", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
-                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    PictureUrl = table.Column<string>(type: "text", nullable: true),
+                    MiniPictureUrl = table.Column<string>(type: "text", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
                 },
                 constraints: table =>
                 {
@@ -61,8 +63,8 @@ namespace ArtGallery.Infrastructure.Migrations
                     ItemId = table.Column<int>(type: "int", nullable: false),
                     Author = table.Column<string>(type: "varchar(150)", nullable: false),
                     CommentValue = table.Column<string>(type: "varchar(150)", nullable: false),
-                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
-                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
                 },
                 constraints: table =>
                 {
@@ -82,8 +84,8 @@ namespace ArtGallery.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RatingValue = table.Column<int>(type: "int", nullable: true),
                     ItemId = table.Column<int>(type: "int", nullable: false),
-                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
-                    UpdateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
                 },
                 constraints: table =>
                 {

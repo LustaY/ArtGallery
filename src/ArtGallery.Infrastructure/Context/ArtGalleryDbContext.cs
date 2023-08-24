@@ -33,19 +33,35 @@ namespace ArtGallery.Infrastructure.Context
 
             modelBuilder.Entity<Item>()
             .Property(e => e.UpdateDate)
-            .HasDefaultValueSql("GETDATE()");
+            .HasDefaultValueSql("GETUTCDATE()");
+
+            modelBuilder.Entity<Item>()
+            .Property(e => e.CreateDate)
+            .HasDefaultValueSql("GETUTCDATE()");
 
             modelBuilder.Entity<Category>()
             .Property(e => e.UpdateDate)
-            .HasDefaultValueSql("GETDATE()");
+            .HasDefaultValueSql("GETUTCDATE()");
+
+            modelBuilder.Entity<Category>()
+            .Property(e => e.CreateDate)
+            .HasDefaultValueSql("GETUTCDATE()");
 
             modelBuilder.Entity<Rating>()
             .Property(e => e.UpdateDate)
-            .HasDefaultValueSql("GETDATE()");
+            .HasDefaultValueSql("GETUTCDATE()");
+
+            modelBuilder.Entity<Rating>()
+            .Property(e => e.CreateDate)
+            .HasDefaultValueSql("GETUTCDATE()");
 
             modelBuilder.Entity<Comment>()
             .Property(e => e.UpdateDate)
-            .HasDefaultValueSql("GETDATE()");
+            .HasDefaultValueSql("GETUTCDATE()");
+
+            modelBuilder.Entity<Comment>()
+            .Property(e => e.CreateDate)
+            .HasDefaultValueSql("GETUTCDATE()");
 
             base.OnModelCreating(modelBuilder);
         }

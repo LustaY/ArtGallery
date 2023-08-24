@@ -15,6 +15,8 @@ namespace ArtGallery.Domain.Models
         public double? Price { get; set; }
         public double? Location { get; set; }
         public int CategoryId { get; set; }
+        public string? PictureUrl { get; set; }
+        public string? MiniPictureUrl { get; set; }
 
         public IEnumerable<Rating> Ratings { get; set; }
         public IEnumerable<Comment> Comments { get; set; }

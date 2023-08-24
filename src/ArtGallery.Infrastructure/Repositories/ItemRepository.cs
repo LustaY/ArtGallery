@@ -16,9 +16,14 @@ namespace ArtGallery.Infrastructure.Repositories
 
         public override async Task<List<Item>> GetAll()
         {
+            var x = await Db.Items.AsNoTracking().Include(x => x.Category)
+                .OrderBy(x => x.Name)
+                .ToListAsync();
+
             return await Db.Items.AsNoTracking().Include(x => x.Category)
                 .OrderBy(x => x.Name)
                 .ToListAsync();
+
         }
 
         public override async Task<Item> GetById(int id)
@@ -30,7 +35,11 @@ namespace ArtGallery.Infrastructure.Repositories
 
         public async Task<IEnumerable<Item>> GetItemsByCategory(int categoryId)
         {
-            return await Search(x => x.CategoryId == categoryId);
+            //return await Search(x => x.CategoryId == categoryId);
+            return await Db.Items.AsNoTracking()
+                .Include(x => x.Category)
+                .Where(x => x.CategoryId == categoryId)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Item>> SearchItemWithCategory(string searchedValue)

@@ -39,19 +39,6 @@ namespace ArtGallery.API.Controllers
             return Ok(_mapper.Map<ItemResultDto>(item));
         }
 
-        [HttpGet]
-        [Route("get-items-by-category/{categoryId:int}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetItemsByCategory(int categoryId)
-        {
-            var items = await _itemService.GetItemsByCategory(categoryId);
-
-            if (!items.Any()) return NotFound();
-
-            return Ok(_mapper.Map<IEnumerable<ItemResultDto>>(items));
-        }
-
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -116,6 +103,20 @@ namespace ArtGallery.API.Controllers
             var items = _mapper.Map<List<Item>>(await _itemService.SearchItemWithCategory(searchedValue));
 
             if (!items.Any()) return NotFound("None item was founded");
+
+            return Ok(_mapper.Map<IEnumerable<ItemResultDto>>(items));
+        }
+
+
+        [HttpGet]
+        [Route("get-items-by-category/{categoryId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<Item>>> GetItemsByCategory(int categoryId)
+        {
+            var items = _mapper.Map<List<Item>>(await _itemService.GetItemsByCategory(categoryId));
+
+            if (!items.Any()) return NotFound();
 
             return Ok(_mapper.Map<IEnumerable<ItemResultDto>>(items));
         }

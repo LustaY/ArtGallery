@@ -43,6 +43,14 @@ namespace ArtGallery.Infrastructure.Mappings
 
             builder.Property(x => x.CategoryId)
                 .IsRequired();
+
+            builder.Property(x => x.PictureUrl)
+                //.IsRequired()
+                .HasColumnType("text");
+
+            builder.Property(x => x.MiniPictureUrl)
+                //.IsRequired()
+                .HasColumnType("text");
         }
     }
 }
