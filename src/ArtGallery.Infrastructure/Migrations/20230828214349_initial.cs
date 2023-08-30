@@ -61,7 +61,7 @@ namespace ArtGallery.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ItemId = table.Column<int>(type: "int", nullable: false),
-                    Author = table.Column<string>(type: "varchar(150)", nullable: false),
+                    CommentAuthor = table.Column<string>(type: "varchar(150)", nullable: false),
                     CommentValue = table.Column<string>(type: "varchar(150)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")

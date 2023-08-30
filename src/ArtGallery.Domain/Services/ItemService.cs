@@ -54,6 +54,10 @@ namespace ArtGallery.Domain.Services
         {
             return await _itemRepository.GetItemsByCategory(categoryId);
         }
+        public async Task<IEnumerable<Item>> GetItemsByPage(int categoryId, int page, int size) 
+        {
+            return await _itemRepository.GetItemsByPage(categoryId,page, size );
+        }
 
         public async Task<IEnumerable<Item>> Search(string itemName)
         {

@@ -18,7 +18,7 @@ namespace ArtGallery.Infrastructure.Mappings
             builder.Property(x => x.CommentValue)
                 .IsRequired();
 
-            builder.Property(x => x.Author)
+            builder.Property(x => x.CommentAuthor)
                 .IsRequired();
 
             builder.Property(x => x.ItemId)

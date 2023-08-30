@@ -40,12 +40,12 @@ namespace ArtGallery.API.Controllers
         }
 
         [HttpGet]
-        [Route("search/{itemId}")]
+        [Route("get-ratings-by-item/{itemId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetRatingsByItem(int itemId)
+        public async Task<ActionResult<List<Rating>>> GetRatingsByItem(int itemId)
         {
-            var ratings = await _ratingService.GetRatingsByItem(itemId);
+            var ratings = _mapper.Map<List<Rating>>(await _ratingService.GetRatingsByItem(itemId));
             if (ratings == null) return NotFound();
             return Ok(_mapper.Map<IEnumerable<RatingResultDto>>(ratings));
         }

@@ -18,6 +18,7 @@ namespace ArtGallery.API.Configuration
         {
             services.AddScoped<ArtGalleryDbContext>();
 
+            ////Type type = typeof(Entity);
             //Type type = typeof(Entity);
             //string models = type.Namespace;// "ArtGallery.Domain.Models";
             //string inf = "ArtGallery.Infrastructure";
@@ -35,7 +36,7 @@ namespace ArtGallery.API.Configuration
             //    //Type xx = Type.GetType(dom + ".Interfaces.I" + t.Name + "Service, " + dom);
             //    //Type yy = Type.GetType(dom + ".Services." + t.Name + "Service, " + dom);
             //    var s = 1;
-            //    services.AddScoped<x.GetType, y>();
+            //    //services.AddScoped<>();
             //}
 
 

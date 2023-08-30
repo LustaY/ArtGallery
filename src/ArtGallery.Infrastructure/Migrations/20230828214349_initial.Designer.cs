@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.Infrastructure.Migrations
 {
     [DbContext(typeof(ArtGalleryDbContext))]
-    [Migration("20230824224452_initial")]
+    [Migration("20230828214349_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -64,7 +64,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Author")
+                    b.Property<string>("CommentAuthor")
                         .IsRequired()
                         .HasColumnType("varchar(150)");
 

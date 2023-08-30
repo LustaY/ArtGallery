@@ -12,6 +12,7 @@ namespace ArtGallery.Domain.Interfaces
         new Task<List<Item>> GetAll();
         new Task<Item> GetById(int id);
         Task<IEnumerable<Item>> GetItemsByCategory(int categoryId);
+        Task<IEnumerable<Item>> GetItemsByPage(int categoryId,int page,int size);
         Task<IEnumerable<Item>> SearchItemWithCategory(string searchedValue);
     }
 }

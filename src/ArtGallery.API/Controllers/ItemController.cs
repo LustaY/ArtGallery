@@ -120,5 +120,18 @@ namespace ArtGallery.API.Controllers
 
             return Ok(_mapper.Map<IEnumerable<ItemResultDto>>(items));
         }
+
+        [HttpGet]
+        [Route("get-items-by-page/categoryId={categoryId:int}&page={page:int}&size={size:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<Item>>> GetItemsByPage(int categoryId, int page, int size)
+        {
+            var items = _mapper.Map<List<Item>>(await _itemService.GetItemsByPage(categoryId,page,size));
+
+            if (!items.Any()) return NotFound();
+
+            return Ok(_mapper.Map<IEnumerable<ItemResultDto>>(items));
+        }
     }
 }

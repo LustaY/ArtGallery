@@ -12,6 +12,8 @@ namespace ArtGallery.API.Dtos.Item
         public string? Author { get; set; }
         public double? Location { get; set; }
         public double? Price { get; set; }
+        public string? PictureUrl { get; set; }
+        public string? MiniPictureUrl { get; set; }
 
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }  

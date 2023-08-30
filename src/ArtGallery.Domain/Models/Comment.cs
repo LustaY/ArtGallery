@@ -9,7 +9,7 @@ namespace ArtGallery.Domain.Models
     public class Comment : Entity
     {
         public int ItemId { get; set; }
-        public string Author { get; set; }
+        public string CommentAuthor { get; set; }
         public string CommentValue { get; set; }
 
         public Item Item { get; set; }

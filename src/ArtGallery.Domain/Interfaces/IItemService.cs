@@ -15,6 +15,7 @@ namespace ArtGallery.Domain.Interfaces
         Task<Item> Update(Item item);
         Task<bool> Delete(Item item);
         Task<IEnumerable<Item>> GetItemsByCategory(int categoryId);
+        Task<IEnumerable<Item>> GetItemsByPage(int categoryId, int page,int size);
         Task<IEnumerable<Item>> Search(string itemName);
         Task<IEnumerable<Item>> SearchItemWithCategory(string searchedValue);
     }

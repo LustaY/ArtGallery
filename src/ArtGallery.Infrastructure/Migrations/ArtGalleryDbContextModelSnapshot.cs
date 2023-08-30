@@ -61,7 +61,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Author")
+                    b.Property<string>("CommentAuthor")
                         .IsRequired()
                         .HasColumnType("varchar(150)");
 

@@ -2,7 +2,7 @@
 {
     public class RatingResultDto
     {
-        public int? RatingValue { set; get; }
+        public int RatingValue { set; get; }
         public int ItemId { set; get; }
     }
 }

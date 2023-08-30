@@ -18,8 +18,10 @@ namespace ArtGallery.API.Dtos.Item
         
         [StringLength(150, ErrorMessage = "The field {0} must be between {2} and {1} characters", MinimumLength = 2)]
         public string? Author { get; set; }
+        public string? PictureUrl { get; set; }
+        public string? MiniPictureUrl { get; set; }
         public double? Location { get; set; }
         public double? Price { get; set; }
-
+        
     }
 }

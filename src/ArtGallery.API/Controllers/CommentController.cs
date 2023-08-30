@@ -6,6 +6,7 @@ using ArtGallery.Domain.Models;
 using ArtGallery.Domain.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ArtGallery.API.Controllers
 {
@@ -40,13 +41,13 @@ namespace ArtGallery.API.Controllers
         }
 
         [HttpGet]
-        [Route("search/{itemId}")]
+        [Route("get-comments-by-item/{itemId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetCommentsByItem(int itemId)
+        public async Task<ActionResult<List<Comment>>> GetCommentsByItem(int itemId)
         {
-            var comments = await _commentService.GetCommentsByItem(itemId);
-            if (comments == null) return NotFound();
+            var comments = _mapper.Map < List <Comment>> (await _commentService.GetCommentsByItem(itemId));
+            if (!comments.Any()) return NotFound();
             return Ok(_mapper.Map<IEnumerable<CommentResultDto>>(comments));
         }
 

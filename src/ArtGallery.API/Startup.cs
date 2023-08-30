@@ -59,7 +59,7 @@ namespace ArtGallery.API
             {
                 endpoints.MapControllers();
             });
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+           app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         }
     }
 }
