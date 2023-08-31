@@ -16,6 +16,11 @@ namespace ArtGallery.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("AllowLocalhost4200", builder => builder
+                    .WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()));
+
             services.AddDbContext<ArtGalleryDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -33,11 +38,13 @@ namespace ArtGallery.API
                     Version = "v1"
                 });
             });
-            services.AddCors();
+            
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("AllowLocalhost4200");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,7 +66,7 @@ namespace ArtGallery.API
             {
                 endpoints.MapControllers();
             });
-           app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+           
         }
     }
 }
