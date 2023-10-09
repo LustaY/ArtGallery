@@ -11,9 +11,9 @@ namespace ArtGallery.Infrastructure.Repositories
 
         public override async Task<List<Item>> GetAll()
         {
-            var x = await Db.Items.AsNoTracking().Include(x => x.Category)
-                .OrderBy(x => x.Name)
-                .ToListAsync();
+            //var x = await Db.Items.AsNoTracking().Include(x => x.Category)
+            //    .OrderBy(x => x.Name)
+            //    .ToListAsync();
 
             return await Db.Items.AsNoTracking().Include(x => x.Category)
                 .OrderBy(x => x.Name)
